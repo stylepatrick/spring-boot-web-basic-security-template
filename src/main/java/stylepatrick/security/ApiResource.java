@@ -28,6 +28,7 @@ public class ApiResource {
         return ResponseEntity.ok().body(new Response("Hello to secret resource!"));
     }
 
+    // Example of Methode security. If the role 'TOPSECRET' is given to the user he can access the methode otherwise a 403 will be given
     @PreAuthorize("hasAuthority('TOPSECRET')")
     @RequestMapping(value = "topsecret")
     public ResponseEntity<Response> getTopSecret() {
