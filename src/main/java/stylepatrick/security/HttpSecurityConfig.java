@@ -45,10 +45,13 @@ public class HttpSecurityConfig extends WebSecurityConfigurerAdapter {
                 // Will display a login page. Depending on the Content Negotiation.
                 .formLogin()
                 .and()
-                .logout();
+                .logout()
+                .and()
+                // Enable Oauth2 client for authentication -> necessary to have the client configured in the external configuration file.
+                .oauth2Login();
     }
 
-    // If a Bean from type UserDetailsService exist a 3-rd party provider like a DB can be used for the user credentials.
+     // If a Bean from type UserDetailsService exist a 3-rd party provider like a DB can be used for the user credentials.
     // When no Bean with UserDetailsService exist the autoconfiguration will be used and the user can be configured via the property file or on every start a new password will be generated
     @Bean
     public UserDetailsService userDetailsService(
